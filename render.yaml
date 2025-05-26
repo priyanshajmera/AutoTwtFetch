@@ -1,0 +1,18 @@
+services:
+  - type: worker
+    name: tweet-watcher
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python tweet_watcher.py
+    envVars:
+      - key: EMAIL_SENDER
+        value: your-email@gmail.com
+      - key: EMAIL_PASSWORD
+        value: your-app-password
+      - key: EMAIL_RECEIVER
+        value: your-recipient@gmail.com
+      - key: TWITTER_HANDLE
+        value: elonmusk
+      - key: CHECK_INTERVAL
+        value: "60"
