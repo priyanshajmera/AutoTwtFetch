@@ -11,6 +11,7 @@ import certifi
 os.environ['SSL_CERT_FILE'] = certifi.where()
 
 TWITTER_HANDLE = os.getenv("TWITTER_HANDLE", "elonmusk")
+print(f"TWITTER_HANDLE received: [{TWITTER_HANDLE}]")
 CHECK_INTERVAL = int(os.getenv("CHECK_INTERVAL", 60))
 EMAIL_SENDER = os.environ["EMAIL_SENDER"]
 EMAIL_PASSWORD = os.environ["EMAIL_PASSWORD"]
