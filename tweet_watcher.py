@@ -50,12 +50,20 @@ def get_latest_tweet():
         print(f"❌ Scrape error: {e}")
         return None, None
 
+def main():
+    print(f"🔍 Checking @{TWITTER_HANDLE}...")
+
+    tweet_id, content = get_latest_tweet()
+
+    if tweet_id:
+        print(f"\n🆕 Latest tweet:\n{content}")
+
+        send_email_notification(tweet_id, content)
+    else:
+        print("❌ No tweet found.")
+
+    print("✅ Execution completed. Exiting...")
+
+
 if __name__ == "__main__":
-    print(f"🔍 Monitoring @{TWITTER_HANDLE} for new tweets...")
-    while True:
-        tweet_id, content = get_latest_tweet()
-        if tweet_id and tweet_id != LAST_TWEET_ID:
-            print(f"\n🆕 New tweet:\n{content}")
-            send_email_notification(tweet_id, content)
-            LAST_TWEET_ID = tweet_id
-        time.sleep(CHECK_INTERVAL)
+    main()
