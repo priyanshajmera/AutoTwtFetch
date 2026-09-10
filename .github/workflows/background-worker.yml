@@ -8,7 +8,8 @@ on:
 jobs:
   run-script:
     runs-on: ubuntu-latest
-
+    # This connects the job to the "production" Environment
+    environment: production
     steps:
       # Upgraded from v4 to v4.2.2+ (or generic v4 update tags natively running on Node 24)
       - name: Checkout repository code
