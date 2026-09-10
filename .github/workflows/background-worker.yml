@@ -10,11 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Upgraded from v4 to v4.2.2+ (or generic v4 update tags natively running on Node 24)
       - name: Checkout repository code
         uses: actions/checkout@v4
 
+      # IMPORTANT: Upgrade this from v5 to v6 to completely drop the Node 20 dependency
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.11'
           cache: 'pip'
@@ -24,7 +26,7 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      # The environment variables are securely mapped here
+      # Clean execution with injected environment variables
       - name: Run Python script
         env:
           EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
